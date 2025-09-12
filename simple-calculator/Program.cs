@@ -23,7 +23,7 @@ namespace SimpleCalculator
 
                 double result = calculatorEngine.Calculate(operation, firstNumber, secondNumber);
 
-                Console.WriteLine(result);
+                Console.WriteLine($"The result of" firstNumber "and" secondNumber "is equal to" result);
 
             }
             catch (Exception ex)
