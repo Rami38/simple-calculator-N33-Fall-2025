@@ -23,14 +23,25 @@ namespace SimpleCalculator
 
                 double result = calculatorEngine.Calculate(operation, firstNumber, secondNumber);
 
-                Console.WriteLine($"The result of" firstNumber "and" secondNumber "is equal to" result);
-
             }
             catch (Exception ex)
             {
                 // Normally, we'd log this error to a file.
                 Console.WriteLine(ex.Message);
             }
+            var sb = new StringBuilder();
+            sb.Append("The value ");
+            sb.Append(firstNumber.ToString("F2"));
+            sb.Append(" ");
+            sb.Append(CalculatorEngine.OperatorToText(opNormalized));
+            sb.Append(" the value ");
+            sb.Append(secondNumber.ToString("F2"));
+            sb.Append(" is equal to ");
+            sb.Append(result.ToString("F2"));
+            sb.Append(".");
+
+            Console.WriteLine();
+            Console.WriteLine(sb.ToString());
 
         }
     }
