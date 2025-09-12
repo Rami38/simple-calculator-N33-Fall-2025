@@ -13,17 +13,21 @@ namespace SimpleCalculator
             {
                 result = argFirstNumber + argSecondNumber;
             }
-            if (argOperation == "-" || argOperation.ToLower() == "substraction")
+            else if (argOperation == "-" || argOperation.ToLower() == "substraction")
             {
                 result = argFirstNumber - argSecondNumber;
             }
-            if (argOperation == "×" || argOperation.ToLower() == "multiplication")
+            else if (argOperation == "×" || argOperation.ToLower() == "multiplication")
             {
                 result = argFirstNumber * argSecondNumber;
             }
-            if (argOperation == "÷" || argOperation.ToLower() == "division")
+            else if (argOperation == "÷" || argOperation.ToLower() == "division")
             {
                 result = argFirstNumber / argSecondNumber;
+            }
+            else 
+            {
+                return "The result operation is not available";
             }
 
             return result;
