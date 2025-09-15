@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Text;
 
 namespace SimpleCalculator
 {
@@ -7,42 +7,34 @@ namespace SimpleCalculator
     {
         static void Main(string[] args)
         {
-            try
-            {
-                // Class to convert user input
-                InputConverter inputConverter = new InputConverter();
+            Console.WriteLine("Simple Calculator");
+            Console.WriteLine("Valid operations: +, -, ×, ÷, %");
+            Console.WriteLine("Example: 5 + 3");
 
-                // Class to perform actual calculations
-                CalculatorEngine calculatorEngine = new CalculatorEngine();
-                Console.WriteLine("Welcome to Simple Calculator\nEnter  your first number then press Enter:");
-                double firstNumber = inputConverter.ConvertInputToNumeric(Console.ReadLine());
-                Console.WriteLine("Enter  your Second number then press Enter:");
-                double secondNumber = inputConverter.ConvertInputToNumeric(Console.ReadLine());
-                Console.WriteLine("Enter operation like + or add number then press Enter:");
-                string operation = Console.ReadLine();
+            Console.Write("Enter first number: ");
+            string firstInput = Console.ReadLine();
+            double firstNumber = InputConverter.ConvertInputToNumeric(firstInput);
 
-                double result = calculatorEngine.Calculate(operation, firstNumber, secondNumber);
+            Console.Write("Enter operation (+, -, ×, ÷, %): ");
+            string operation = OperatorConverter.Convert(Console.ReadLine());
 
-            }
-            catch (Exception ex)
-            {
-                // Normally, we'd log this error to a file.
-                Console.WriteLine(ex.Message);
-            }
+            Console.Write("Enter second number: ");
+            string secondInput = Console.ReadLine();
+            double secondNumber = InputConverter.ConvertInputToNumeric(secondInput);
+
+            var engine = new CalculatorEngine();
+            double result = engine.Calculate(operation, firstNumber, secondNumber);
+
+            // Human-readable formatted output
+            string operationWord = OperatorConverter.ToWord(operation);
             var sb = new StringBuilder();
-            sb.Append("The value ");
-            sb.Append(firstNumber.ToString("F2"));
-            sb.Append(" ");
-            sb.Append(CalculatorEngine.OperatorToText(opNormalized));
-            sb.Append(" the value ");
-            sb.Append(secondNumber.ToString("F2"));
-            sb.Append(" is equal to ");
-            sb.Append(result.ToString("F2"));
-            sb.Append(".");
+            sb.AppendFormat("The value {0} {1} the value {2} is equal to {3:F2}.",
+                            firstNumber, operationWord, secondNumber, result);
 
-            Console.WriteLine();
             Console.WriteLine(sb.ToString());
 
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
     }
 }

@@ -6,14 +6,13 @@ namespace SimpleCalculator
     {
         public double Calculate(string argOperation, double argFirstNumber, double argSecondNumber)
         {
-            //You can use switch case also here for multiple operations or use if-else-if ladder
             double result = 0;
 
             if (argOperation == "+" || argOperation.ToLower() == "add")
             {
                 result = argFirstNumber + argSecondNumber;
             }
-            else if (argOperation == "-" || argOperation.ToLower() == "substraction")
+            else if (argOperation == "-" || argOperation.ToLower() == "subtraction")
             {
                 result = argFirstNumber - argSecondNumber;
             }
@@ -25,9 +24,13 @@ namespace SimpleCalculator
             {
                 result = argFirstNumber / argSecondNumber;
             }
-            else 
+            else if (argOperation == "%" || argOperation.ToLower() == "modulus")
             {
-                return "The result operation is not available";
+                result = argFirstNumber % argSecondNumber;
+            }
+            else
+            {
+                throw new InvalidOperationException("The operation is not available");
             }
 
             return result;
