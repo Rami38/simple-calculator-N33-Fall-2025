@@ -25,7 +25,7 @@ namespace SimpleCalculator
             var engine = new CalculatorEngine();
             double result = engine.Calculate(operation, firstNumber, secondNumber);
 
-            // Human-readable formatted output
+            
             string operationWord = OperatorConverter.ToWord(operation);
             var sb = new StringBuilder();
             sb.AppendFormat("The value {0} {1} the value {2} is equal to {3:F2}.",
